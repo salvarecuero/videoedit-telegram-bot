@@ -17,5 +17,8 @@
     "mime-types": "^2.1.31",
     "node-telegram-bot-api": "^0.53.0",
     "nodemon": "^2.0.12"
+  },
+  "engines": {
+    "node": "14.17.3"
   }
 }
