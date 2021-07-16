@@ -1,0 +1,4 @@
+node_modules/
+.env
+assets/test.mp4
+commandsDesc.txt

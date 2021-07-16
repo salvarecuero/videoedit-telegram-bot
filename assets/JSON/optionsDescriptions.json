@@ -1,0 +1,39 @@
+[
+  {
+    "name": "mute",
+    "description": "The audio of the video will be muted.",
+    "examples": [
+      "Just add 'mute' <i>(without quotes)</i> to your response message."
+    ]
+  },
+  {
+    "name": "reverse",
+    "description": "The video (including the audio) will play in reverse order. It will start with the end and visceversa. This option DOESN'T mirror your image.",
+    "examples": [
+      "Just add 'reverse' (without quotes) to your response message."
+    ]
+  },
+  {
+    "name": "bw",
+    "aliases": ["grayscale"],
+    "description": "BW stands for Black&White, it basically does that, it makes it look only in grayscales.",
+    "examples": [
+      "Just add 'bw' or 'grayscale' <i>(without quotes)</i> to your response message."
+    ]
+  },
+  {
+    "name": "volume",
+    "description": "Let's you modify the volume of the video file. The default value will be 1, so if you want to double it, you should set it to 2, and if you want to decrease it to half, you should set it to 0.5. The max value is 10.",
+    "examples": [
+      "<code>volume=0.5</code>",
+      "<code>volume=2</code>",
+      "<code>volume=4.3</code>"
+    ]
+  },
+  {
+    "name": "convert",
+    "aliases": ["format"],
+    "description": "You can convert the file to another format. For now the available formats are -> <code>mp4, webm, mkv and avi</code>. You don't have to put a dot before the format, it's not necessary.",
+    "examples": ["<code>convert=avi</code>", "<code>convert=mp4</code>"]
+  }
+]

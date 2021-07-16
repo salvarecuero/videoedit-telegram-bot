@@ -1,0 +1,20 @@
+{
+  "name": "videoedit-telegram-bot",
+  "version": "1.0.0",
+  "description": "Video Editor Telegram Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Salvador Recuero",
+  "license": "ISC",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
+    "dotenv": "^10.0.0",
+    "ffmpeg": "0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
+    "mime-types": "^2.1.31",
+    "node-telegram-bot-api": "^0.53.0"
+  }
+}
