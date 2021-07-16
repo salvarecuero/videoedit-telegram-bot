@@ -1,5 +1,6 @@
 const colors = require("../utils/colors");
 const resolveVideoRequest = require("./resolveVideoRequest");
+const deleteHoldOnMsg = require("../utils/deleteHoldOnMsg");
 
 module.exports = (msg, states, bot) => {
   const chatID = msg.chat.id;
@@ -14,19 +15,32 @@ module.exports = (msg, states, bot) => {
     console.log(
       `${colors.cyan}Message was a response from ${msg.from.userFullName}, input was: "${msgText}"`
     );
+    bot
+      .sendMessage(chatID, "Okay... give me some time to process it.")
+      .then(async (holdOnMsg) => {
+        await resolveVideoRequest(
+          chatID,
+          states[chatID].file_id,
+          msgText,
+          bot,
+          states
+        )
+          .then(() => {
+            delete states[chatID];
+            deleteHoldOnMsg(chatID, holdOnMsg.message_id, bot, msg);
 
-    resolveVideoRequest(chatID, states[chatID].file_id, msgText, bot, states)
-      .then(() => {
-        delete states[chatID];
-        console.log(
-          `${colors.green}✔ Request solved to ${msg.from.userFullName}`
-        );
-      })
-      .catch(() => {
-        delete states[chatID];
-        console.log(
-          `${colors.red}✗ Request failed to ${msg.from.userFullName}`
-        );
+            console.log(
+              `${colors.green}✔ Request solved to ${msg.from.userFullName}`
+            );
+          })
+          .catch(() => {
+            delete states[chatID];
+            deleteHoldOnMsg(chatID, holdOnMsg.message_id, bot, msg);
+
+            console.log(
+              `${colors.red}✗ Request failed to ${msg.from.userFullName}`
+            );
+          });
       });
   } else {
     bot.sendMessage(
