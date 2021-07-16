@@ -10,8 +10,20 @@ const addFullNameToMsg = require("./utils/addFullNameToMsg");
 // Telegram Bot
 const TelegramBot = require("node-telegram-bot-api");
 const token = process.env.TELEGRAM_BOT_TOKEN;
-const bot = new TelegramBot(token, { polling: true });
+const options = process.env.PORT
+  ? {
+      webHook: {
+        port: process.env.PORT,
+      },
+    }
+  : {
+      polling: true,
+    };
+const url = process.env.APP_URL;
+const bot = new TelegramBot(token, options);
 const states = {};
+
+if (process.env.PORT) bot.setWebHook(`${url}/bot${token}`);
 
 bot.on("polling_error", (e) => console.log(e));
 
